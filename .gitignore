@@ -1,14 +1,10 @@
-# This file instructs git to ignore specific directories,
-# files, and file types
-# ("ignore" meaning that they won't be included
-# in the git repository)
 
-# EAE6320 Temporary Files
-#========================
 
 /temp
-/bin
 /obj
+
+/bin/*
+!/bin/data/
 # Visual Studio
 #==============
 

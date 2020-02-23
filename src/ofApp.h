@@ -2,12 +2,14 @@
 
 #include "ofMain.h"
 #include "ofxGui/src/ofxGui.h";
-#include "Boid.h"
-#include "Flock.h"
+#include "Movement/Boid.h"
+#include "Movement/Flock.h"
+#include "Pathfinding/DirectedGraph.h"
+#include "Pathfinding/Path.h"
 namespace AI {
 	
-	const float windowWidth = 500;
-	const float windowHeight = 500;
+	const float windowWidth = 1280;
+	const float windowHeight = 720;
 
 	namespace Behaviors {
 		enum Behaviors {
@@ -40,7 +42,17 @@ class ofApp : public ofBaseApp{
 	public:
 		void setup();
 		void update();
+		void UpdateForPathFollow();
 		void draw();
+		void DrawPathFollow();
+		void ReadGraphFiles();
+		void SetupForPathFollow();
+		void CalculatePathForPathFollow(AI::Math::sVector2D position);
+		void SetTargetForNextPathIndex();
+		void SetupHandWrittenGraph();
+		void SetupForMovementAlgorithms();
+		void UpdateForMovementAlgorithms();
+		void DrawForMovementAlgorithms();
 		void StartBasicMotion();
 		void StartSeekBehavior();
 		void StartWanderBehavior();
@@ -81,12 +93,18 @@ class ofApp : public ofBaseApp{
 		float wanderOffset = 100.0f;
 		float wanderRadius = 25.0f;
 		float wanderRate = 0.5f;
-		
+
+		bool startPathFollow = false;
+		int pathIndex = 0;
+		float smoothingRadius = 2.0f;
+
 		AI::Agents::Boid * targetBoid;
 		AI::Agents::Flock * flock;
 		std::vector<AI::Agents::Boid *> targetBoids;
 		std::vector<AI::Movement::sKinematicData> targetKinematics;
 		AI::Behaviors::Behaviors currentBehavior = AI::Behaviors::Behaviors::BASIC_MOTION;
+		AI::Pathfinding::DirectedGraph * directedGraph;
+		AI::Pathfinding::Path * path;
 
 		ofxPanel panel;
 		ofxButton basicMotionButton;

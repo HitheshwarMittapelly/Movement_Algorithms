@@ -37,17 +37,38 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Boid.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\Movement\Boid.cpp">
+      <Filter>src\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="src\Flock.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\Movement\Flock.cpp">
+      <Filter>src\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="src\sKinematicData.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\Movement\sKinematicData.cpp">
+      <Filter>src\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="src\sVector2D.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\Movement\sVector2D.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pathfinding\DirectedWeightedEdge.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pathfinding\DirectedGraph.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pathfinding\Utilities.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pathfinding\PathfindingAlgorithms.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pathfinding\NodeRecord.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pathfinding\Heuristic.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pathfinding\DivisionSchemeAlgorithms.cpp">
+      <Filter>src\Pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +83,12 @@
     </Filter>
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{1cb40914-39db-433a-ac7f-7740465c093f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Movement">
+      <UniqueIdentifier>{4fa915c2-d44b-485e-910e-777136ad5817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Pathfinding">
+      <UniqueIdentifier>{1d9d1888-0492-4db0-95f6-91a450ebcc30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -104,20 +131,44 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Boid.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Movement\Boid.h">
+      <Filter>src\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="src\Flock.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Movement\Flock.h">
+      <Filter>src\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="src\sKinematicData.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Movement\sKinematicData.h">
+      <Filter>src\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="src\sSteering.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Movement\sSteering.h">
+      <Filter>src\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="src\sVector2D.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Movement\sVector2D.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pathfinding\DirectedWeightedEdge.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pathfinding\NodeRecord.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pathfinding\DirectedGraph.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pathfinding\Path.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pathfinding\Utilities.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pathfinding\PathfindingAlgorithms.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pathfinding\Heuristic.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pathfinding\DivisionSchemeAlgorithms.h">
+      <Filter>src\Pathfinding</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

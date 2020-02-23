@@ -190,12 +190,19 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
-    <ClCompile Include="src\Boid.cpp" />
-    <ClCompile Include="src\Flock.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Movement\Boid.cpp" />
+    <ClCompile Include="src\Movement\Flock.cpp" />
+    <ClCompile Include="src\Movement\sKinematicData.cpp" />
+    <ClCompile Include="src\Movement\sVector2D.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
-    <ClCompile Include="src\sKinematicData.cpp" />
-    <ClCompile Include="src\sVector2D.cpp" />
+    <ClCompile Include="src\Pathfinding\DirectedGraph.cpp" />
+    <ClCompile Include="src\Pathfinding\DirectedWeightedEdge.cpp" />
+    <ClCompile Include="src\Pathfinding\DivisionSchemeAlgorithms.cpp" />
+    <ClCompile Include="src\Pathfinding\Heuristic.cpp" />
+    <ClCompile Include="src\Pathfinding\NodeRecord.cpp" />
+    <ClCompile Include="src\Pathfinding\PathfindingAlgorithms.cpp" />
+    <ClCompile Include="src\Pathfinding\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
@@ -210,12 +217,20 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h" />
-    <ClInclude Include="src\Boid.h" />
-    <ClInclude Include="src\Flock.h" />
+    <ClInclude Include="src\Movement\Boid.h" />
+    <ClInclude Include="src\Movement\Flock.h" />
+    <ClInclude Include="src\Movement\sKinematicData.h" />
+    <ClInclude Include="src\Movement\sSteering.h" />
+    <ClInclude Include="src\Movement\sVector2D.h" />
     <ClInclude Include="src\ofApp.h" />
-    <ClInclude Include="src\sKinematicData.h" />
-    <ClInclude Include="src\sSteering.h" />
-    <ClInclude Include="src\sVector2D.h" />
+    <ClInclude Include="src\Pathfinding\DirectedGraph.h" />
+    <ClInclude Include="src\Pathfinding\DirectedWeightedEdge.h" />
+    <ClInclude Include="src\Pathfinding\DivisionSchemeAlgorithms.h" />
+    <ClInclude Include="src\Pathfinding\Heuristic.h" />
+    <ClInclude Include="src\Pathfinding\NodeRecord.h" />
+    <ClInclude Include="src\Pathfinding\Path.h" />
+    <ClInclude Include="src\Pathfinding\PathfindingAlgorithms.h" />
+    <ClInclude Include="src\Pathfinding\Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
