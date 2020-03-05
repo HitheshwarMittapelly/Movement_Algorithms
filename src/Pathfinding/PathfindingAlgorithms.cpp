@@ -10,9 +10,9 @@ AI::Pathfinding::Path * AI::Pathfinding::FindPathUsingDijkstra(DirectedGraph * i
 	startRecord.incomingEdge = NULL;
 	startRecord.costSoFar = 0;
 
-	AI::Utilities::PQueue<NodeRecord, std::vector<NodeRecord>, 
+	AI::Utilities::PQueue<NodeRecord, std::vector<NodeRecord>,
 		std::greater<std::vector<NodeRecord>::value_type>> openList;
-	openList.push(startRecord);
+	openList.PushNode(startRecord.node, startRecord);
 	AI::Utilities::PQueue<NodeRecord, std::vector<NodeRecord>,
 		std::greater<std::vector<NodeRecord>::value_type>> closedList;
 	NodeRecord current;
@@ -30,10 +30,10 @@ AI::Pathfinding::Path * AI::Pathfinding::FindPathUsingDijkstra(DirectedGraph * i
 			NodeRecord temp;
 			NodeRecord endNodeRecord;
 			temp.node = endNode;
-			if (closedList.find(temp) != closedList.end()) {
+			if (closedList.contains(temp.node)) {
 				continue;
 			}
-			else if (openList.find(temp) != openList.end()) {
+			else if (openList.contains(temp.node)) {
 				endNodeRecord = *openList.find(temp);
 				if (endNodeRecord.costSoFar <= endNodeCost) {
 					continue;
@@ -48,14 +48,15 @@ AI::Pathfinding::Path * AI::Pathfinding::FindPathUsingDijkstra(DirectedGraph * i
 				endNodeRecord.incomingEdge = edge;
 			}
 
-			if (openList.find(endNodeRecord) == openList.end()) {
-				openList.push(endNodeRecord);
+			if (!openList.contains(endNodeRecord.node)) {
+				openList.PushNode(endNodeRecord.node,endNodeRecord);
 			}
-			
+
 		}
 		openList.pop();
-		closedList.push(current);
-		
+		openList.removeNode(current.node);
+		closedList.PushNode(current.node,current);
+
 	}
 	if (current.node != i_endNode) {
 		return NULL;
@@ -65,20 +66,20 @@ AI::Pathfinding::Path * AI::Pathfinding::FindPathUsingDijkstra(DirectedGraph * i
 		while (current.node != i_startNode) {
 			path.insert(path.begin(), current.incomingEdge);
 			auto next = current.incomingEdge->GetSource();
-			
+
 			NodeRecord temp;
 			temp.node = next;
 			current = *closedList.find(temp);
 		}
-		std::cout << " Dijkstra Algorithm "<< std::endl;
+		std::cout << " Dijkstra Algorithm " << std::endl;
 		for (auto edge : path) {
-			std::cout << edge->GetSource() << " - " <<edge->GetSink()<< std::endl;
+			std::cout << edge->GetSource() << " - " << edge->GetSink() << std::endl;
 		}
 		return new Path(path);
 	}
 
 
-	
+
 }
 
 AI::Pathfinding::Path * AI::Pathfinding::FindPathUsingAStar(DirectedGraph * i_graph, int i_startNode, int i_endNode, Heuristic * heuristics)
@@ -91,13 +92,16 @@ AI::Pathfinding::Path * AI::Pathfinding::FindPathUsingAStar(DirectedGraph * i_gr
 
 	AI::Utilities::PQueue<NodeRecord, std::vector<NodeRecord>,
 		std::greater<std::vector<NodeRecord>::value_type>> openList;
-	openList.push(startRecord);
+	openList.PushNode(startRecord.node, startRecord);
 	AI::Utilities::PQueue<NodeRecord, std::vector<NodeRecord>,
 		std::greater<std::vector<NodeRecord>::value_type>> closedList;
 	NodeRecord current;
 	while (openList.size() > 0) {
 		current = openList.top();
-
+		/*if (closedList.size() != 0) {
+			std::cout << (float)openList.size() / (float)(closedList.size()) << std::endl;
+		}
+		*/
 		if (current.node == i_endNode) {
 			break;
 		}
@@ -110,15 +114,15 @@ AI::Pathfinding::Path * AI::Pathfinding::FindPathUsingAStar(DirectedGraph * i_gr
 			NodeRecord temp;
 			NodeRecord endNodeRecord;
 			temp.node = endNode;
-			if (closedList.find(temp) != closedList.end()) {
+			if (closedList.contains(temp.node)) {
 				endNodeRecord = *closedList.find(temp);
 				if (endNodeRecord.costSoFar <= endNodeCost) {
 					continue;
 				}
-				closedList.remove(endNodeRecord);
-				 endNodeHeuristic= endNodeRecord.costSoFar - endNodeCost;
+				closedList.remove(endNodeRecord.node, endNodeRecord);
+				endNodeHeuristic = endNodeRecord.costSoFar - endNodeCost;
 			}
-			else if (openList.find(temp) != openList.end()) {
+			else if (openList.contains(temp.node)) {
 				endNodeRecord = *openList.find(temp);
 				if (endNodeRecord.costSoFar <= endNodeCost) {
 					continue;
@@ -136,14 +140,15 @@ AI::Pathfinding::Path * AI::Pathfinding::FindPathUsingAStar(DirectedGraph * i_gr
 				endNodeRecord.estimateToGoal = endNodeCost + endNodeHeuristic;
 			}
 
-			if (openList.find(endNodeRecord) == openList.end()) {
-				
-				openList.push(endNodeRecord);
+			if (!openList.contains(endNodeRecord.node)) {
+
+				openList.PushNode(endNodeRecord.node, endNodeRecord);
 			}
 
 		}
 		openList.pop();
-		closedList.push(current);
+		openList.removeNode(current.node);
+		closedList.PushNode(current.node,current);
 
 	}
 	if (current.node != i_endNode) {

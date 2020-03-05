@@ -10,7 +10,9 @@ namespace AI {
 	
 	const float windowWidth = 1280;
 	const float windowHeight = 720;
-
+	const int heightOfTile = 48;
+	const int widthOfTile = 64;
+	
 	namespace Behaviors {
 		enum Behaviors {
 			BASIC_MOTION,
@@ -35,6 +37,17 @@ namespace AI {
 
 		};
 	}
+
+	namespace GraphAlgorithms {
+		enum GraphAlgos {
+			ASTAR_ONE,
+			ASTAR_LARGE,
+			DIJKSTRA_ONE,
+			DIJKSTRA_LARGE,
+			PATH_FOLLOW,
+			NONE,
+		};
+	}
 	
 }
 class ofApp : public ofBaseApp{
@@ -45,18 +58,19 @@ class ofApp : public ofBaseApp{
 		void UpdateForPathFollow();
 		void draw();
 		void DrawPathFollow();
-		void ReadGraphFiles();
+		void ReadGraphFiles(bool i_isLarge);
 		void SetupForPathFollow();
 		void CalculatePathForPathFollow(AI::Math::sVector2D position);
 		void SetTargetForNextPathIndex();
 		void SetupHandWrittenGraph();
+		void SetHeuristicType(const void * sender, bool &pressed);
 		void SetupForMovementAlgorithms();
 		void UpdateForMovementAlgorithms();
 		void DrawForMovementAlgorithms();
-		void StartBasicMotion();
-		void StartSeekBehavior();
-		void StartWanderBehavior();
-		void StartFlockBehavior();
+		void StartDijkstraOnSmallGraph();
+		void StartAStarOnSmallGraph();
+		void StartDijkstraOnLargeGraph();
+		void StartAStarOnLargeGraph();
 		void StartBehavior(AI::Behaviors::Behaviors i_behaviorType);
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -95,6 +109,8 @@ class ofApp : public ofBaseApp{
 		float wanderRate = 0.5f;
 
 		bool startPathFollow = false;
+		bool isShowingGrid = true;
+		bool b_useHeuristicTypeOne = true;
 		int pathIndex = 0;
 		float smoothingRadius = 2.0f;
 
@@ -103,14 +119,23 @@ class ofApp : public ofBaseApp{
 		std::vector<AI::Agents::Boid *> targetBoids;
 		std::vector<AI::Movement::sKinematicData> targetKinematics;
 		AI::Behaviors::Behaviors currentBehavior = AI::Behaviors::Behaviors::BASIC_MOTION;
-		AI::Pathfinding::DirectedGraph * directedGraph;
+
+		AI::GraphAlgorithms::GraphAlgos currentAlgorithm = AI::GraphAlgorithms::GraphAlgos::NONE;
+
+		AI::Pathfinding::DirectedGraph * downloadedLargeGraph;
+		AI::Pathfinding::DirectedGraph * handwrittenGraph;
 		AI::Pathfinding::Path * path;
 
 		ofxPanel panel;
-		ofxButton basicMotionButton;
-		ofxButton seekButton;
-		ofxButton wanderButton;
-		ofxButton flockingButton;
+		ofxButton runDijkstraButtononGraphOne;
+		ofxButton runAStarOnGraphOneButton;
+		ofxButton runDijkstraOnLargeGraphButton;
+		ofxButton runAStarOnLargeGraphButton;
+		ofxButton runPathFollowButton;
+		ofxToggle useHeuristicTypeOne;
+
+		ofxTextField startNodeIF;
+		ofxTextField endNodeIF;
 
 
 };

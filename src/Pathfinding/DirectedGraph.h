@@ -10,6 +10,7 @@ namespace AI {
 			std::vector<DirectedWeightedEdge *> GetOutgoingEdges(int i_node);
 			int GetTotalNodes();
 			DirectedGraph(std::vector<DirectedWeightedEdge *> i_allEdges);
+
 		private:
 			std::map<int, std::vector<DirectedWeightedEdge *>> graph;
 			DirectedGraph() = default;
